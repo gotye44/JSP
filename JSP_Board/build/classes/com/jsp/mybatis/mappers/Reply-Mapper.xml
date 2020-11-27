@@ -5,5 +5,31 @@
   
 <mapper namespace="Reply-Mapper">
 	
+	<select id="selectReplySeqNextValue" resultType="int">
+		select reply_seq.nextval
+		from dual
+	</select>
+	<select id="selectReplyList" parameterType="int" resultType="reply">
+		SELECT a.*, b.picture
+		FROM reply a, member b
+		WHERE a.replyer = b.id
+		ORDER BY rno asc
+	</select>
 	
+	<select id="countReply" resultType="int">
+		SELECT count(bno)
+		FROM reply
+		WHERE bno = #{bno}
+	</select>
+	
+	<update id="insertReply" parameterType="reply">
+		INSERT INTO reply (rno, bno, replyer, replytext) VALUES(#{rno}, #{bno}, #{replyer}, #{replytext})
+	</update>
+	<update id="updateReply" parameterType="reply">
+		UPDATE reply SET replytext = #{replytext} updatedate = sysdate
+		WHERE rno = #{rno}
+	</update>
+	<update id="deleteReply" parameterType="int">
+		DELETE FROM reply WHERE rno = #{rno}
+	</update>
 </mapper>

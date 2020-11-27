@@ -9,6 +9,38 @@ public class ReplyVO {
 	private String replytext;
 	private Date regdate;
 	private Date updatedate;
+	private String picture;
+	
+	private int replycnt;
+	public int getReplycnt() {
+		return replycnt;
+	}
+
+
+
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
+	}
+
+
+
+	public ReplyVO() {}
+	
+	
+	
+	public ReplyVO(int rno, int bno, String replyer, String replytext, Date regdate, Date updatedate, String picture) {
+		super();
+		this.rno = rno;
+		this.bno = bno;
+		this.replyer = replyer;
+		this.replytext = replytext;
+		this.regdate = regdate;
+		this.updatedate = updatedate;
+		this.picture = picture;
+	}
+
+
+
 	public int getRno() {
 		return rno;
 	}
@@ -44,5 +76,17 @@ public class ReplyVO {
 	}
 	public void setUpdatedate(Date updatedate) {
 		this.updatedate = updatedate;
+	}
+
+
+
+	public String getPicture() {
+		return picture;
+	}
+
+
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 }
