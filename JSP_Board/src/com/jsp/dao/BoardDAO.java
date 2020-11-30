@@ -22,4 +22,5 @@ public interface BoardDAO {
 	void increaseViewCount(int bno) throws SQLException;
 	
 	int selectBoardSequenceNextValue() throws SQLException;
+	
 }

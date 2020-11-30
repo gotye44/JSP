@@ -119,6 +119,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
+      	<h4>댓글 수정</h4>
         <h4 class="modal-title" style="display:none;"></h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>        
       </div>

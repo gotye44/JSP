@@ -58,6 +58,22 @@
 	</context-param>
 	
 	
+	<context-param>
+		<param-name>attachDAO</param-name>
+		<param-value>com.jsp.dao.AttachDAOImpl</param-value>
+	</context-param>
+	
+	
+	<context-param>
+		<param-name>pdsDAO</param-name>
+		<param-value>com.jsp.dao.PdsDAOImpl</param-value>
+	</context-param>
+	<context-param>
+		<param-name>pdsService</param-name>
+		<param-value>com.jsp.service.PdsServiceImpl</param-value>
+	</context-param>
+	
+	
 	<listener>
 		<listener-class>com.jsp.listener.ApplicationContextLoaderListener</listener-class>
 	</listener>

@@ -11,6 +11,13 @@ public class BoardVO {
 	private int viewcnt;
 	private Date updatedate;
 	private String dist;
+	private int replycnt;
+	public int getReplycnt() {
+		return replycnt;
+	}
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
+	}
 	public int getBno() {
 		return bno;
 	}

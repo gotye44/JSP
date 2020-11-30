@@ -6,7 +6,7 @@
 <script type="text/x-handlebars-template"  id="reply-list-template" >
 {{#each .}}
 <div class="replyLi" >
-	<i class="fas"> <img src="<%=request.getContextPath()%>/member/getPicture.do?picture={{picture}}" class="img-circle elevation-2" alt="User Image" style="width:30px; height:30px"></i>
+        	<img data-target="{{replyer}}" src="{{getPicture replyer}}" class="fas" alt="User Image"  style="width:30px; height:30px">
  	<div class="timeline-item" >
   		<span class="time">
     		<i class="fa fa-clock"></i>{{prettifyDate regdate}}
@@ -55,7 +55,6 @@
 					"replyer":replyer,
 					"replytext":replytext
 			}
-			alert(JSON.stringify(data))
 			$.ajax({
 				url : "<%=request.getContextPath()%>/reply/add.do",
 				type : "post",
@@ -69,6 +68,68 @@
 					alert("댓글 등록에 실패했습니다.")
 				}
 			})
+		})
+		
+		$("div.timeline").on("click", "#modifyReplyBtn", function(e) {
+			var rno = $(this).attr("data-rno")
+			var replyer = $(this).attr("data-replyer")
+			var replytext = $("#"+rno+"-replytext").text();
+			
+			$("#replytext").val(replytext)
+			$(".modal-title").text(rno)
+		})
+		
+		$("#replyModBtn").on("click", function(e) {
+			var rno = $(".modal-title").text();
+			var replytext = $("#replytext").val()
+			
+			var sendData={
+				rno : rno,
+				replytext : replytext
+			}
+			
+			$.ajax({
+				url : "<%=request.getContextPath()%>/reply/update.do",
+				type : "post",
+				data : JSON.stringify(sendData),
+				success : function(result) {
+					alert("수정되었습니다")
+					getPage("<%=request.getContextPath()%>/reply/list.do?bno=${board.bno}&page="+replyPage)
+				},
+				error : function(error) {
+					alert("수정 실패")
+				},
+				complete: function() {
+					$("#modifyModal").modal("hide")
+				}
+			})
+		})
+		$("#replyDelBtn").on("click", function(e) {
+			var rno = $(".modal-title").text()
+			
+			var sendData={
+				bno : "${board.bno}",
+				rno : rno,
+				page : replyPage
+			}
+			
+			$.ajax({
+				url : "<%=request.getContextPath()%>/reply/remove.do",
+				type : "post",
+				data : JSON.stringify(sendData),
+				success : function(page) {
+					alert("삭제되었습니다.")
+					replyPage = page
+					getPage("<%=request.getContextPath()%>/reply/list.do?bno=${board.bno}&page="+page)
+				},
+				error : function(error) {
+					alert("삭제 실패했습니다.")
+				},
+				complete : function() {
+					$("#modifyModal").modal("hide")
+				}
+			})
+			
 		})
 	}
 	
@@ -93,6 +154,18 @@
 				result = "visible"
 			}
 			return result
+		},
+		"getPicture":function(replyer){
+			var data={id:replyer};
+			var src="<%=request.getContextPath() %>/member/getPicture.do?picture=";
+			$.getJSON("<%=request.getContextPath()%>/member/getMemberToJson.do",data,function(result){			
+				if(result){
+					src+=result.picture;	
+				}else{
+					src+="noImage.jpg";		
+				}
+				$('img[data-target="'+replyer+'"]').attr("src",src);
+			});
 		}
 	})
 	

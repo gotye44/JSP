@@ -74,7 +74,10 @@ table th, td {
 						<tr style="0.85em;">
 							<td>${board.bno}</td>
 							<td id="boardTitle" style="text-align: left; max-width: 100px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-								<a href="javascript:OpenWindow('detail.do?bno=${board.bno}', '상세보기',800, 700)">${board.title }</a>
+								<a href="javascript:OpenWindow('detail.do?bno=${board.bno}', '상세보기',800, 700)">
+								<span class="col-sm-12">${board.title }
+								&nbsp;&nbsp;&nbsp;<span class="badge bg-blue">${board.replycnt}</span></span>
+								</a>
 							</td>
 							<td>${board.writer}</td>
 							<td><fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd"/></td>
