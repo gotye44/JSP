@@ -52,7 +52,7 @@ public class UploadImgAction implements Action{
 				for(FileItem item : formItems) {	// form items 반복하여 꺼내는 구문
 					if(!item.isFormField()) {	// 파일일 경우 해당
 						// uuid+구분자+파일명
-						String fileName = MakeFileName.toUUIDFIleName(".jpg", "");
+						String fileName = MakeFileName.toUUIDFIleName(".jpg", "$$");
 						String filePath = uploadPath + File.separator + fileName;
 						File storeFile = new File(filePath);
 						

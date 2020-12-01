@@ -31,9 +31,9 @@ public class CrossSiteScriptFilter implements Filter {
 		
 		HttpServletRequest httpReq = (HttpServletRequest) request;
 		String url = httpReq.getRequestURI();
-		
 		for(String includeURL : includeURLs) {
 			if(url.contains(includeURL)) {
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				XSSRequestWrapper requestWrapper = new XSSRequestWrapper((HttpServletRequest) request);
 				requestWrapper.inputXSSFilter(crossParamNames);
 				chain.doFilter(requestWrapper, response);

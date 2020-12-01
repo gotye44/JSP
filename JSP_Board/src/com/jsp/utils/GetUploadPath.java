@@ -3,6 +3,8 @@ package com.jsp.utils;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.Properties;
 
 import org.apache.ibatis.io.Resources;
@@ -25,5 +27,20 @@ public class GetUploadPath {
 		uploadPath=properties.getProperty(key);
 		uploadPath=uploadPath.replace("/", File.separator);
 		return uploadPath;
+	}
+	
+	public static String getUploadDatePath(String key) {
+		String uploadDatePath = getUploadPath(key);
+		
+		Calendar cal = Calendar.getInstance();
+		
+		String yearPath = File.separator+cal.get(Calendar.YEAR);
+		String monthPath = File.separator+new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
+		String datePath = File.separator+new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		
+		String savePath = yearPath+monthPath+datePath;
+		uploadDatePath += savePath;
+		
+		return uploadDatePath;
 	}
 }
