@@ -1,7 +1,11 @@
+<%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
+<%
+	if(true) throw new SQLException("테스트");
+%>
 <!-- Content Wrapper. Contains page content -->
 <div>
 	<jsp:include page="/WEB-INF/views/content_header.jsp">

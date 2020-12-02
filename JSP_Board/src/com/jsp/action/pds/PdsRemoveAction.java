@@ -2,7 +2,6 @@ package com.jsp.action.pds;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -31,7 +30,6 @@ public class PdsRemoveAction implements Action{
 		List<AttachVO> attachList = null;
 		
 		try {
-			if(true) throw new SQLException("테스트 익셉션..");
 			
 			attachList = pdsService.getPds(pno).getAttachList();
 			

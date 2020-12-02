@@ -24,7 +24,7 @@
 		target.append(html)
 	}
 	function subMenu(mCode){
-		if(mCode!="M000000"){
+		if(mCode!="M00"){
 			$.getJSON("<%=request.getContextPath()%>/common/subMenu.do?mCode="+mCode,function(data){
 				printData(data,$(".subMenuList"),$("#subMenu-list-template"))
 			})
@@ -40,7 +40,7 @@
 			// 현재 주소 중 .do 뒷 부분이 잇다면 날려버린다.
 			renewURL = renewURL.substring(0, renewURL.indexOf(".do")+3);
 			
-			if(mCode != 'M000000'){
+			if(mCode != 'M00'){
 				renewURL += "?mCode="+mCode
 			}
 			
@@ -54,5 +54,5 @@
 	}
 	
 	goPage("${menu.murl}","${menu.mcode}")
-	subMenu("${menu.mcode}".substring(0,3)+"0000")
+	subMenu("${menu.mcode}".substring(0,3))
 </script>
